@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boletín de notas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <main class="pagina">
+    <header class="encabezado">
+      <h1>Boletín de notas</h1>
+      <p>Escribe los datos del estudiante y sus 5 notas, de 0 a 5. La nota definitiva es el promedio.</p>
+    </header>
+
+    <div class="contenido">
+      <!-- FORMULARIO -->
+      <form id="formulario" class="panel formulario" novalidate>
+        <fieldset>
+          <legend>Datos del estudiante</legend>
+
+          <div class="campo campo-ancho">
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="off" placeholder="Ej: Laura Gómez">
+            <small class="error" id="err-nombre"></small>
+          </div>
+
+          <div class="campo">
+            <label for="edad">Edad</label>
+            <input id="edad" name="edad" type="text" inputmode="numeric" autocomplete="off" placeholder="Ej: 16">
+            <small class="error" id="err-edad"></small>
+          </div>
+
+          <div class="campo">
+            <label for="curso">Curso</label>
+            <input id="curso" name="curso" type="text" autocomplete="off" placeholder="Ej: 10-B">
+            <small class="error" id="err-curso"></small>
+          </div>
+
+          <div class="campo campo-ancho">
+            <label for="cc">Número de CC</label>
+            <input id="cc" name="cc" type="text" inputmode="numeric" autocomplete="off" placeholder="Solo números">
+            <small class="error" id="err-cc"></small>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Notas (0 a 5)</legend>
+          <div class="notas">
+            <div class="campo">
+              <label for="nota1">Nota 1</label>
+              <input id="nota1" class="input-nota" type="text" inputmode="decimal" autocomplete="off" placeholder="0.0">
+              <small class="error" id="err-nota1"></small>
+            </div>
+            <div class="campo">
+              <label for="nota2">Nota 2</label>
+              <input id="nota2" class="input-nota" type="text" inputmode="decimal" autocomplete="off" placeholder="0.0">
+              <small class="error" id="err-nota2"></small>
+            </div>
+            <div class="campo">
+              <label for="nota3">Nota 3</label>
+              <input id="nota3" class="input-nota" type="text" inputmode="decimal" autocomplete="off" placeholder="0.0">
+              <small class="error" id="err-nota3"></small>
+            </div>
+            <div class="campo">
+              <label for="nota4">Nota 4</label>
+              <input id="nota4" class="input-nota" type="text" inputmode="decimal" autocomplete="off" placeholder="0.0">
+              <small class="error" id="err-nota4"></small>
+            </div>
+            <div class="campo">
+              <label for="nota5">Nota 5</label>
+              <input id="nota5" class="input-nota" type="text" inputmode="decimal" autocomplete="off" placeholder="0.0">
+              <small class="error" id="err-nota5"></small>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="acciones">
+          <button type="submit" class="boton boton-principal">Calcular nota definitiva</button>
+          <button type="button" id="btn-limpiar" class="boton boton-secundario">Limpiar</button>
+        </div>
+      </form>
+
+      <!-- RESULTADO -->
+      <section class="panel resultado" id="resultado" aria-live="polite">
+        <div class="vacio" id="vacio">
+          <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
+            <rect x="12" y="8" width="40" height="48" rx="6" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M22 24h20M22 34h20M22 44h11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <h2>Aún no hay resultado</h2>
+          <p>Completa el formulario y pulsa «Calcular nota definitiva».</p>
+        </div>
+
+        <div class="datos" id="datos" hidden>
+          <div class="estudiante">
+            <h2 id="r-nombre"></h2>
+            <p id="r-detalle"></p>
+          </div>
+
+          <div class="medidor">
+            <svg viewBox="0 -16 220 140" role="img" aria-label="Medidor de la nota definitiva">
+              <path class="medidor-fondo" d="M 20 110 A 90 90 0 0 1 200 110" pathLength="100"/>
+              <path class="medidor-valor" id="medidor-valor" d="M 20 110 A 90 90 0 0 1 200 110" pathLength="100"/>
+              <line class="medidor-marca" x1="134.1" y1="35.8" x2="141.5" y2="13"/>
+              <text class="medidor-texto" x="146" y="2">3.0</text>
+            </svg>
+            <div class="nota-final">
+              <span id="r-definitiva">0.00</span>
+              <small>nota definitiva</small>
+            </div>
+          </div>
+
+          <p class="veredicto" id="r-veredicto"></p>
+
+          <ul class="lista-notas" id="r-notas"></ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
